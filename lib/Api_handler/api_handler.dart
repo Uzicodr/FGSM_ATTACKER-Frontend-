@@ -68,13 +68,6 @@ class ApiHandler {
         return 'Request timeout. The server took too long to respond.';
       case DioExceptionType.badResponse:
         return 'Server error: ${e.response?.statusCode} - ${e.response?.data['message'] ?? 'Unknown error'}';
-      case DioExceptionType.cancel:
-        return 'Request was cancelled.';
-      case DioExceptionType.unknown:
-        if (e.error is SocketException) {
-          return 'Connection refused. Make sure Flask server is running.';
-        }
-        return 'Network error: ${e.message}';
       default:
         return 'An error occurred: ${e.message}';
     }
